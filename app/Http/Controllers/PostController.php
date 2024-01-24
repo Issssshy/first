@@ -8,6 +8,7 @@ use App\Http\Requests\PostRequest; // useする
 //use宣言は外部にあるクラスをPostController内にインポートできる。
 //この場合、App\Models内のPostクラスをインポートしている。
 use App\Models\Post;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -34,9 +35,9 @@ class PostController extends Controller
 	 //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
 	}
 	
-	public function create()
+	public function create(Category $category)
 	{
-    	return view('posts.create');
+    	return view('posts.create')->with(['categories' => $category->get()]);
 	}
 	
 	public function store(PostRequest $request, Post $post)
