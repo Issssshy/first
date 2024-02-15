@@ -28,16 +28,25 @@
                     </form>
                 </div>
             @endforeach
-        <div class='paginate'>{{ $posts->links() }}</div>
-        <script>
-            function deletePost(id) {
-                'use strict'
-
-                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
-                    document.getElementById(`form_${id}`).submit();
+            <div class='paginate'>{{ $posts->links() }}</div>
+            <script>
+                function deletePost(id) {
+                    'use strict'
+    
+                    if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                        document.getElementById(`form_${id}`).submit();
+                    }
                 }
-            }
-        </script>
+            </script>
+        </div>
+        <div>
+            @foreach($questions as $question)
+                <div>
+                    <a href="https://teratail.com/questions/{{ $question['id'] }}">
+                        {{ $question['title'] }}
+                    </a>
+                </div>
+            @endforeach
         </div>
         {{ Auth::user()->name }}
     </body>
